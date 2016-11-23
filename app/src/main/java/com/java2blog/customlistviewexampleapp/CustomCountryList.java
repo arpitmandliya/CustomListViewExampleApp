@@ -28,15 +28,17 @@ public class CustomCountryList extends ArrayAdapter<String> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        View row=convertView;
         LayoutInflater inflater = context.getLayoutInflater();
-        View listViewItem = inflater.inflate(R.layout.row_item, null, true);
-        TextView textViewCountry = (TextView) listViewItem.findViewById(R.id.textViewCountry);
-        TextView textViewCapital = (TextView) listViewItem.findViewById(R.id.textViewCapital);
-        ImageView imageFlag = (ImageView) listViewItem.findViewById(R.id.imageViewFlag);
+        if(convertView==null)
+            row = inflater.inflate(R.layout.row_item, null, true);
+        TextView textViewCountry = (TextView) row.findViewById(R.id.textViewCountry);
+        TextView textViewCapital = (TextView) row.findViewById(R.id.textViewCapital);
+        ImageView imageFlag = (ImageView) row.findViewById(R.id.imageViewFlag);
 
         textViewCountry.setText(countryNames[position]);
         textViewCapital.setText(capitalNames[position]);
         imageFlag.setImageResource(imageid[position]);
-        return  listViewItem;
+        return  row;
     }
 }
